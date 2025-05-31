@@ -1,5 +1,5 @@
-# Use correct Node.js version (compatible with n8n)
-FROM node:20.15-alpine
+# Use latest compatible Node version for n8n (20.18.1+)
+FROM node:20.18.1-alpine
 
 # Set working directory
 WORKDIR /app
@@ -10,7 +10,7 @@ RUN npm install -g n8n
 # Expose default N8N port
 EXPOSE 5678
 
-# Optional: set environment variable to avoid config permission warnings
+# Optional environment settings
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
 # Start N8N
