@@ -1,14 +1,17 @@
-# Use official Node.js LTS image
-FROM node:18-slim
+# Use correct Node.js version (compatible with n8n)
+FROM node:20.15-alpine
 
-# Create app directory
+# Set working directory
 WORKDIR /app
 
-# Install n8n globally
+# Install N8N globally
 RUN npm install -g n8n
 
-# Expose the default port for n8n
+# Expose default N8N port
 EXPOSE 5678
 
-# Run n8n
+# Optional: set environment variable to avoid config permission warnings
+ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+
+# Start N8N
 CMD ["n8n"]
