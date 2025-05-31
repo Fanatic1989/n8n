@@ -1,17 +1,12 @@
-# Use latest compatible Node version for n8n (20.18.1+)
-FROM node:20.18.1-alpine
+FROM n8nio/n8n:latest
 
-# Set working directory
-WORKDIR /app
+# Optionally add your environment settings
+ENV N8N_BASIC_AUTH_ACTIVE=true \
+    N8N_BASIC_AUTH_USER=admin \
+    N8N_BASIC_AUTH_PASSWORD=yourpassword \
+    N8N_HOST=0.0.0.0 \
+    N8N_PORT=5678
 
-# Install N8N globally
-RUN npm install -g n8n
-
-# Expose default N8N port
 EXPOSE 5678
 
-# Optional environment settings
-ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-
-# Start N8N
 CMD ["n8n"]
