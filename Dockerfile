@@ -1,12 +1,13 @@
-# Use the official n8n image
 FROM n8nio/n8n:latest
 
-# Set environment variables for basic auth and host/port
-ENV N8N_BASIC_AUTH_ACTIVE=true \
-    N8N_BASIC_AUTH_USER=admin \
-    N8N_BASIC_AUTH_PASSWORD=yourpassword \
-    N8N_HOST=0.0.0.0 \
-    N8N_PORT=5678
+# Set environment file path
+ENV N8N_ENV_FILE=/home/node/.env
 
-# Expose the port n8n runs on
+# Copy local .env file into container
+COPY .env /home/node/.env
+
+# Expose the default n8n port
 EXPOSE 5678
+
+# Start n8n
+CMD ["n8n"]
